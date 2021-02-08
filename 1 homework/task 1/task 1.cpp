@@ -2,7 +2,7 @@
 
 int main()
 {
-    std::cout << "Hello Olya!\n";
+    std::cout << "some changes!\n";
 }
 
 ffffffff
