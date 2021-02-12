@@ -7,4 +7,3 @@ int main()
 
 ffffffff
 
-го8нр7ро8
