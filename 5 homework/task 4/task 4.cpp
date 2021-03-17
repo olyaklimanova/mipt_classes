@@ -2,13 +2,13 @@
 #include <fstream>
 #include <regex>
 #include <string>
-#include <algorithm>
+
 
 
 int main()
 {
-    std::regex date_pattern("[^\\d](\\d{4}:([01]\\d):([0123]\\d))[^\\d]");
-    std::regex time_pattern("[^\\d](([012]\\d):([012345]\\d):([012345]\\d))[^\\d]");
+    std::regex date_pattern(R"([^\d](\d{4}:([01]\d):([0-3][01]))[^\d])");
+    std::regex time_pattern(R"([^\d](([0-2][0-4]):([0-5]\d):([0-5]\\d))[^\d])");
 
     std::cout << "Able to distinguish these formats:\n" <<
         "Date: YYYY:MM:DD\n" <<
@@ -21,9 +21,7 @@ int main()
 
     std::sregex_token_iterator end_it;
     for (; time_it != end_it; ++time_it)
-    {
         std::cout << *time_it << std::endl;
-    }
 
     for (; date_it != end_it; ++date_it)
         std::cout << *date_it << std::endl;
