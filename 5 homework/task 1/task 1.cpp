@@ -11,7 +11,7 @@ int main()
 #ifdef _MSC_VER
         std::cout.imbue(std::locale("de-ch.1252"));
 #else
-        std::cout.imbue(std::locale("ru_RU.UTF-8"));
+        std::cout.imbue(std::locale("de_CH.UTF-8"));
 #endif
 
         std::cin.imbue(std::locale("en_US.UTF-8"));
@@ -24,7 +24,7 @@ int main()
         std::cout << "Money that I need to by a helicopter: ";
         std::cin >> std::get_money(money);
 
-        std::cout << std::showbase << std::put_money(money, false) << std::endl;
+        std::cout << std::showbase << std::put_money(1.08 * money, false) << std::endl;
     }
     catch (const std::exception& e)
     {
