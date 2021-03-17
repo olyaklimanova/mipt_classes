@@ -7,8 +7,8 @@
 int main()
 {
     std::ofstream file_output("output.txt", std::ios::trunc);
-    std::regex mail_pattern("([[:alnum:][:punct:]]*)@([^-][[:alnum:].-]*[^-])");
-    std::regex sep_pattern("[ \t\n]*[),:\";()][ \t\n]*");
+    std::regex mail_pattern(R"(([[:alnum:][:punct:]]*)@([^-][[:alnum:].-]*[^-]))");
+    std::regex sep_pattern(R"([ \t\n]*[),:\";()][ \t\n]*)");
 
     std::smatch m;
     std::string str(std::istreambuf_iterator< char >(std::cin), std::istreambuf_iterator< char >());
