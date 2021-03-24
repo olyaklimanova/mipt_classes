@@ -7,7 +7,7 @@ std::string delete_comments(const std::string& data, std::regex pattern);
 
 int main(int argc, const char* argv[])
 {
-    std::ifstream file_in(argv[1]);
+    std::ifstream file_in("test.txt");
     std::ofstream file_out("output.txt");
 
     std::string str(std::istreambuf_iterator< char >(file_in), (std::istreambuf_iterator< char >()));
