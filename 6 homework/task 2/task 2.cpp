@@ -31,7 +31,7 @@ int main(int argc, const char* argv[])
     file.seekg(0);
     std::getline(file, str);
 
-    file.seekg((line - 1) * (str.size() + 1), std::ios::beg);
+    file.seekg((line - 1) * (str.size() + 2), std::ios::beg);
 
     std::getline(file, str);
 
