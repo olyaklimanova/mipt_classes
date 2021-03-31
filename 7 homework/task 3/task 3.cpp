@@ -4,27 +4,25 @@
 #include <algorithm>
 #include <numeric>
 #include <vector>
-#include "Timer.hpp"
+#include "../task 1/Timer.hpp"
 
 template< typename Iterator, typename Function >
-Function for_each_parallel(Iterator begin, Iterator end, Function f)
+void for_each_parallel(Iterator begin, Iterator end, Function f)
 {
     auto length = std::distance(begin, end);
 
-    std::size_t min_for_thread = 200;
+    std::size_t min_for_thread = 125000;
 
     if (length <= min_for_thread)
-        return std::for_each(begin, end, f);
+        std::for_each(begin, end, f);
     else
     {
         Iterator middle = std::next(begin, length / 2);
 
-        std::future< Function > first_half = std::async(std::for_each< Iterator, Function >, begin, middle, f);
-        Function second_half = for_each_parallel(middle, end, f);
+        std::future< void > first_half = std::async(for_each_parallel< Iterator, Function >, begin, middle, f);
+        for_each_parallel< Iterator, Function >(middle, end, f);
 
         first_half.wait();
-
-        return f;
     }
 }
 
@@ -46,7 +44,7 @@ int main()
     }
 
     {
-        Timer<std::chrono::microseconds> for_eachpar("Parallel version of for_each");
+        Timer<std::chrono::microseconds> for_each_par("Parallel version of for_each");
         for_each_parallel(std::begin(v2), std::end(v2),
             [](int& value)
             {
